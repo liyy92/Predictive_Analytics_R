@@ -97,16 +97,7 @@ rf
 # Create an object for importance of variables
 importance <- importance(rf)
 # Create data frame using importance. 
-varImportance <- data.frame(Variables = row.names(importance), 
-                            Importance = round(importance[,'IncNodePurity'], 0))
 varImpPlot(rf)
-# Create interactive plot.  
-ggplotly(ggplot(varImportance, aes(x = reorder(Variables, Importance), 
-                                   y = Importance, fill = Importance)) +
-           geom_bar(stat='identity') + 
-           labs(title = 'Importance of predictors', x = 'Predictors', y = 'rmsle') +
-           coord_flip() + 
-           theme_light())
 
 #use p-value to evaluate model
 pred1<-predict(rf,newdata=credit_test)
